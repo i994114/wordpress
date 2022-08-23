@@ -5,7 +5,7 @@ if(have_posts()):
     <article class="article-item">
         <h2 class="article-title"><a href="<?php the_permalink();  ?>"><?php the_title(); ?></a></h2>
         <h3 style="font-size:80%;">
-            <?php  the_author_nickname(); ?> <?php  the_time("Y年m月j日"); ?> <?php single_cat_title('カテゴリー：'); ?>
+            <?php  get_author_meta(); ?> <?php  the_time("Y年m月j日"); ?> <?php single_cat_title('カテゴリー：'); ?>
         </h3>
         <p class="article-body">
             <?php the_content();  ?>
