@@ -14,7 +14,7 @@
 			<section id="about" class="site-width">
 				<h1 class="title">ABOUT</h1>
 				<p>
-					<?php echo get_post_meta($post->ID, 'about', true); ?>
+					ウェブカツ!!は最短1ヶ月でWEBプログラミングを修得できるオンライン動画総合学習サービスです。<br />
 				</p>
 			</section>
 

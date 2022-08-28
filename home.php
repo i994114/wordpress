@@ -14,13 +14,13 @@ Template Name: Home 〜トップページ〜
 		<div id="main">
 
 			<!-- トップバナー -->
-			<img src="img/top-baner.png" id="top-baner">
+			<img src="<?php echo get_post_meta($post->ID, 'img-top', true); ?>" id="top-baner">
 
 			<!-- ABOUT -->
 			<section id="about" class="site-width">
 				<h1 class="title">ABOUT</h1>
 				<p>
-					ウェブカツ!!は最短1ヶ月でWEBプログラミングを修得できるオンライン動画総合学習サービスです。<br />
+					<?php echo get_post_meta($post->ID, 'about', true); ?>
 				</p>
 				<p>
 					プログラミングを学ぼうと思っても、その多くが途中で挫折してしまっているのが現状です。<br />
@@ -81,16 +81,16 @@ Template Name: Home 〜トップページ〜
 			<section id="recruit" class="site-width">
 				<table>
 					<thead>
-						<tr><th class="color1">RECRUIT</th><th>ウェブカツ!!講師募集</th></tr>
+						<tr><th class="color1">RECRUIT</th><th><?php echo get_post_meta($post->ID, 'recruit_info1', true); ?></th></tr>
 					</thead>
 					<tbody>
-						<tr><th>業務内容</th><td>プログラミング教育動画の作成・ホームページの制作</td></tr>
-						<tr><th>資格・経験</th><td>HTML,CSS,PHPを学んだ事がある人なら、業務経験がなくても構いません！</td></tr>
-						<tr><th>お給料</th><td>お気持ちだけで</td></tr>
-						<tr><th>勤務地</th><td>自宅で構いません</td></tr>
-						<tr><th>選考方法</th><td>メールでお問合せ頂いた後にSkype電話にてお話させて頂きます。</td></tr>
-						<tr><th>応募方法</th><td>メールでご応募ください。</td></tr>
-						<tr><th>応募先</th><td>info@webukatu.com</td></tr>
+						<tr><th>業務内容</th><td><?php echo get_post_meta($post->ID, 'recruit_info2', true); ?></td></tr>
+						<tr><th>資格・経験</th><td><?php echo get_post_meta($post->ID, 'recruit_info3',true); ?></td></tr>
+						<tr><th>お給料</th><td><?php echo get_post_meta($post->ID, 'recruit_info4', true); ?></td></tr>
+						<tr><th>勤務地</th><td><?php echo get_post_meta($post->ID, 'recruit_info5', true); ?></td></tr>
+						<tr><th>選考方法</th><td><?php echo get_post_meta($post->ID, 'recruit_info6', true); ?></td></tr>
+						<tr><th>応募方法</th><td><?php echo get_post_meta($post->ID, 'recruit_info7', true); ?></td></tr>
+						<tr><th>応募先</th><td><?php echo get_post_meta($post->ID, 'recruit_info8', true); ?></td></tr>
 					</tbody>
 				</table>
 			</section>
