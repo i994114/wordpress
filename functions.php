@@ -176,6 +176,14 @@ function my_widgets_area() {
         'before_widget' =>'<div>',  //実際のウィジェットエリアを囲むhtmlタグの指定
         'after_widget' => '</div>'
     ));
+    register_sidebar(array(
+        'name' => 'right-sidebar',
+        'id' => 'my_sidebar',
+        'before_widget' => '<div class="sidebar-item">',
+        'after-widget' => '</div>',
+        'before_title' => '<h2>',
+        'after_title' => '</h2>'
+    ));
 }
 
 //ウィジェット自体を作成する
@@ -222,7 +230,7 @@ class My_Widget extends WP_Widget
 <?php 
     }
     //ウィジェットに入力された情報を保存する処理
-
+/*
     function update($new_instance, $old_instance){
         $instance = $old_instance;
         $instance['title'] = strip_tag($new_instance['title']); //これもサニタイズ(php,htmlタグを取り除く)
@@ -233,7 +241,7 @@ class My_Widget extends WP_Widget
 
         return $instance;
     }
-
+*/
     //管理画面から入力されたウィジェットを画面に表示する処理
     function widget($args, $instance)
     {

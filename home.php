@@ -49,6 +49,4 @@ Template Name: Home 〜トップページ〜
 				</table>
 			</section>
 
-		</div>
-
 <?php  get_footer(); ?>
