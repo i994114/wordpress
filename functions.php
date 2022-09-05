@@ -1,7 +1,9 @@
 <?php
 
-define( 'WP_DEBUG_DISPLAY', false );
-define( 'WP_DEBUG_LOG', true );
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+//エラーログの作成場所
+ini_set('error_log', $_SERVER['DOCUMENT_ROOT'].'/log.txt');
 
 //カスタムヘッダー画像の設置
 $custom_header_defaults = array(
@@ -207,8 +209,13 @@ class My_Widget extends WP_Widget
     function form($instance)
     {
         //入力された情報をサニタイズして変数へ格納
-        $title = esc_attr($instance['title']);
-        $body = esc_attr($instance['body']);
+        if (isset($_POST['title'])){
+            $title = esc_attr($instance['title']);
+        }
+        if (isset($_POST['body'])) {
+            $body = esc_attr($instance['body']);
+        }
+        
 ?>
 
         <p>
@@ -217,23 +224,23 @@ class My_Widget extends WP_Widget
                 <?php echo 'タイトル'; ?>
             </label>
             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text"
-             value="<?php echo $title; ?>">
+             value="<?php echo (isset($title))? $title : ''; ?>">
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('body'); ?>">
                 <?php echo '内容:'; ?>
             </label>
             <textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('body'); ?>" name="<?php echo $this->get_field_name('body'); ?>">
-                <?php echo $body; ?>
+                <?php echo (isset($body))? $body : ''; ?>
             </textarea>
         </p>
 <?php 
     }
     //ウィジェットに入力された情報を保存する処理
-/*
+
     function update($new_instance, $old_instance){
         $instance = $old_instance;
-        $instance['title'] = strip_tag($new_instance['title']); //これもサニタイズ(php,htmlタグを取り除く)
+        $instance['title'] = strip_tags($new_instance['title']); //これもサニタイズ(php,htmlタグを取り除く)
         //$instance['title']( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
         $instance['body'] = trim($new_instance['body']);    //先頭と最後尾の空白を取り除く
         //$instance['body']( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
@@ -241,7 +248,7 @@ class My_Widget extends WP_Widget
 
         return $instance;
     }
-*/
+
     //管理画面から入力されたウィジェットを画面に表示する処理
     function widget($args, $instance)
     {
@@ -251,9 +258,8 @@ class My_Widget extends WP_Widget
 
         //ウィジェットから入力された情報を取得
         $title = apply_filters('widget_title', $instance['title']);
-        $body = isset($instance['body'])?esc_attr($instance['body']):'';
-        //$body = apply_filters('widget_body', $instance['body']);
- 
+        $body = apply_filters('widget_body', $instance['body']);
+        
         //ウィジェットから入力された情報がある場合、htmlを表示する
         if ($title) {
 ?>
