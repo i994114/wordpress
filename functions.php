@@ -40,7 +40,10 @@ function pagination($pages = '', $range = 2){
         if($paged > 1) echo "<li class=\"prev\"><a href='".get_pagenum_link($paged - 1)."'>Prev</a></li>\n";
         
         for($i=1; $i <= $pages; $i++){
-            
+            var_dump('i:'.$i);
+            var_dump('pages:'.$pages);
+            var_dump('paged:'.$paged);
+            //var_dump('range'.$range);
             if($pages != 1 && (!($i >= $paged + $range+1 || $i <= $paged-$range-1) || $pages <= $showitems))
             {
                 echo ($paged == $i)? "<li class=\"active\">".$i."</li>\n":"<li><a href='".get_pagenum_link($i)."'>".$i."</a></li>\n";
@@ -230,9 +233,7 @@ class My_Widget extends WP_Widget
             <label for="<?php echo $this->get_field_id('body'); ?>">
                 <?php echo '内容:'; ?>
             </label>
-            <textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('body'); ?>" name="<?php echo $this->get_field_name('body'); ?>">
-                <?php echo (isset($body))? $body : ''; ?>
-            </textarea>
+            <textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('body'); ?>" name="<?php echo $this->get_field_name('body'); ?>"><?php echo (isset($body))? $body : ''; ?></textarea>
         </p>
 <?php 
     }
